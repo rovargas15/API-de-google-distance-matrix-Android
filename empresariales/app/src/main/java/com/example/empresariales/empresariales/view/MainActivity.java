@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
     private Place start, finish;
     private MainPresenter presenter;
     private ProgressDialog loading;
+    AutoCompleteTextView txt_start,txt_finish;
     private static final LatLngBounds BOUNDS = new LatLngBounds(
             new LatLng(-34.041458, 150.790100), new LatLng(-33.682247, 151.383362));
 
@@ -40,7 +41,8 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mGeoDataClient = Places.getGeoDataClient(this, null);
+
+        initGeoData();
         initPresent();
         initAutocomplete();
 
@@ -53,6 +55,19 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
             }
         });
 
+        findViewById(R.id.btn_clear).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                txt_start.setText("");
+                txt_finish.setText("");
+            }
+        });
+
+
+    }
+
+    private void initGeoData(){
+        mGeoDataClient = Places.getGeoDataClient(this, null);
     }
 
     private void initPresent() {
@@ -61,8 +76,8 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
     }
 
     private void initAutocomplete() {
-        AutoCompleteTextView txt_start = findViewById(R.id.txt_start);
-        AutoCompleteTextView txt_finish = findViewById(R.id.txt_finish);
+        txt_start = findViewById(R.id.txt_start);
+        txt_finish = findViewById(R.id.txt_finish);
 
         txt_start.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
