@@ -1,0 +1,5 @@
+
+<resources>
+    <string name="app_name">EMPRESARIALES</string>
+    <string name="urlPrincipal">https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial</string>
+</resources>
